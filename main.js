@@ -1,27 +1,41 @@
-'use strict'
 
-{
-var p = document.getElementById('text')
-var textLists = [
-  'Hello World',
-  'This is my App',
-  'How are you?',
-  'Hello Hello',
-];
-var checkTexts = [];
+(function(){
+    'use strict'
 
-checkTexts = textLists[0].split('').map(function(value){
-  var span = document.createElement('span');
-  span.textContent = value;
-  p.appendChild(span);
-  console.log(span)
-  return span;
-});
-console.log(checkTexts);
+    let type = 'line';
+    let data = {
+      labels:[2010,2011,2012,2013],
+      datasets:[{
+        label: '@taguchi',
+        data: [120,300,200,210],
+        borderColor:'red',
+        borderWidth:5,
+      } ,{
+        label: '@koji',
+      data: [180,250,320,180],
+      borderColor:'blue',
+        borderWidth:5,
+    }]
+  };
 
-document.addEventListener('keydown',e =>{
-  if(e.key === checkTexts[0]){
-    checkTexts[0].className = 'add-blue';
+  let options= {
+    scales:{
+yAxes: [{
+  ticks:{
+    min:0,
+    max:400
   }
-})
-}
+}]
+    }
+  };
+
+    let ctx = document.getElementById('my_chart').getContext('2d');
+    let myChart = new Chart(ctx,{
+      type:type,
+      data:data,
+      options:options
+    });
+  })();
+
+
+
